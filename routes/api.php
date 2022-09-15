@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,34 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('/users',[UserController::class,"store"]);
+Route::post('/login',[AuthenticationController::class,"login"]);
+Route::group(["middleware" => "auth:api"], function(){
+    /*Route::apiResources([
+        'users' =>  UserController::class 
+       ]);*/
+       Route::get('/users',[UserController::class,"index"]);
+       Route::get('/users/{id}',[UserController::class,"show"]);
+       Route::put('/users',[UserController::class,"update"]);
+       Route::delete('/users',[UserController::class,"delete"]);
+       Route::get('/my',[AuthenticationController::class,"my"]);
+});
+
+
+/*Route::group(["middleware" => "auth:api"], function(){
+    //loug out
+    Route::get('/logout',[AuthenficationController::class,"logout"]);
+
+
+    Route::get('/users/{id}',[UserController::class,"show"]);
+    Route::put('/users',[UserController::class,"update"]);
+    Route::delete('/users',[UserController::class,"delete"]);
+    Route::get('/user',[AuthenficationController::class,"user"]);
+
+});
+Route::get('/users',[UserController::class,"index"]);
+Route::post('/users',[UserController::class,"store"]);*/

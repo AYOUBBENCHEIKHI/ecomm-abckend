@@ -31,8 +31,13 @@ class UserController extends Controller
         $user = new User();
         $user->fill($request->toArray());
         $user->password = Hash::make($request->password);
+        $user->isAdmin=false;
         $user->save();
-        return response()->json($user->refresh(),201);
+        //return response()->json($user->refresh(),201);
+        //return UserResource::make($user->refresh());
+        return response()->json([
+            "accessToken" => $user->createToken('password')->accessToken
+            ]);
     }
 
     /**
@@ -57,7 +62,8 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->update($request->all());
-        return response()->json($user->refresh()); 
+        //return response()->json($user->refresh()); 
+        return UserResource::make($user->refresh());
     }
 
     /**
