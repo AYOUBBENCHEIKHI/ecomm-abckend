@@ -31,7 +31,7 @@ class UserController extends Controller
         $user = new User();
         $user->fill($request->toArray());
         $user->password = Hash::make($request->password);
-        $user->isAdmin=false;
+        $user->isAdmin=false ;
         $user->save();
         //return response()->json($user->refresh(),201);
         //return UserResource::make($user->refresh());
