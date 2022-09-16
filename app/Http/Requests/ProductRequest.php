@@ -26,10 +26,10 @@ class ProductRequest extends FormRequest
     {
         return [
             'title'=>'required|max:100',
-            'quantity'=>'required|float',
-            'purchasePrice'=>'required|float',
-            'sellingPrice'=>'required|float',
-            'tax'=>'required|float',
+            'quantity'=>'required',
+            'purchasePrice'=>'required',
+            'sellingPrice'=>'required',
+            'tax'=>'required',
             'category_id'=>'required',
         ];
     }
