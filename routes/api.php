@@ -28,8 +28,8 @@ Route::group(["middleware" => "auth:api"], function(){
        ]);*/
        Route::get('/users',[UserController::class,"index"]);
        Route::get('/users/{id}',[UserController::class,"show"]);
-       Route::put('/users',[UserController::class,"update"]);
-       Route::delete('/users',[UserController::class,"delete"]);
+       Route::put('/users/{id}',[UserController::class,"update"]);
+       Route::delete('/users/{id}',[UserController::class,"destroy"]);
        Route::get('/my',[AuthenticationController::class,"my"]);
 });
 
