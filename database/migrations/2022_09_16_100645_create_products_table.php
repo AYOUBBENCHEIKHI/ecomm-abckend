@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string("title");
             $table->float("quantity");
             $table->float("purchasePrice");
-            $table->float("sellingPrice");
+            $table->float("price");
             $table->float("tax");
             $table->string("img_url");
             $table->timestamps();

@@ -28,7 +28,7 @@ class ProductRequest extends FormRequest
             'title'=>'required|max:100',
             'quantity'=>'required',
             'purchasePrice'=>'required',
-            'sellingPrice'=>'required',
+            'price'=>'required',
             'tax'=>'required',
             'img_url'=>'required',
             'category_id'=>'required',

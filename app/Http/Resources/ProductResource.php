@@ -19,8 +19,9 @@ class ProductResource extends JsonResource
             'title'=>$this->title,
             'quantity'=>$this->quantity,
             'purchasePrice'=>$this->purchasePrice,
-            'sellingPrice'=>$this->sellingPrice,
+            'price'=>$this->price,
             'tax'=>$this->tax,
+            'img_url'=>$this->img_url,
             'category_id'=>$this->category_id,
         ];
     }
