@@ -13,7 +13,15 @@ class ProductResource extends JsonResource
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
     public function toArray($request)
-    {
-        return parent::toArray($request);
+    { 
+        return [
+            'id' => $this->id,
+            'title'=>$this->title,
+            'quantity'=>$this->quantity,
+            'purchasePrice'=>$this->purchasePrice,
+            'sellingPrice'=>$this->sellingPrice,
+            'tax'=>$this->tax,
+            'category_id'=>$this->category_id,
+        ];
     }
 }

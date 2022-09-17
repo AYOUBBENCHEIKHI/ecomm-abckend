@@ -19,6 +19,7 @@ class Product extends Model
         'purchasePrice',
         'sellingPrice',
         'tax',
+        'img_url',
         'category_id'
     ];
 }

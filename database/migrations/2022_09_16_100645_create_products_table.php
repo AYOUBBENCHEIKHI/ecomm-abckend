@@ -21,6 +21,7 @@ return new class extends Migration
             $table->float("purchasePrice");
             $table->float("sellingPrice");
             $table->float("tax");
+            $table->string("img_url");
             $table->timestamps();
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
