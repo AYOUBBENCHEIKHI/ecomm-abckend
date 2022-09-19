@@ -17,7 +17,7 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        //return $user->is_admin;
+        return $user->isAdmin;
     }
 
     /**
@@ -30,6 +30,7 @@ class UserPolicy
     public function view(User $user, User $model)
     {
         return $user->isAdmin;
+
     }
 
     /**

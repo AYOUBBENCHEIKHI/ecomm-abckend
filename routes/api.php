@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+/// lien de video de pagenation https://youtu.be/hR1FOH17BO8
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -30,6 +30,7 @@ Route::apiResources([
     'categories' =>  CategoryController::class 
    ]);
    Route::post('/upload',[UploadController::class,"upload"]);   
+   Route::get('/productsPg',[ProductController::class,"indexPagination"]);   
    
 Route::group(["middleware" => "auth:api"], function(){
      /*Route::apiResources([
