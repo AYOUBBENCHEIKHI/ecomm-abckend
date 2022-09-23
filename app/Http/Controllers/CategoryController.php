@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return CategoryResource::collection(Category::all());
+        return CategoryResource::collection(Category::query()->paginate(5));
     
     }
 
@@ -42,8 +42,6 @@ class CategoryController extends Controller
     public function show($id)
     {
         return Category::find($id)->getProducts;
-
-
     }
 
     /**
@@ -55,7 +53,9 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->update($request->all());
+        return CategoryResource::make($category->refresh());
     }
 
     /**
@@ -66,6 +66,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->delete();
+        return response()->json(array(
+            'message'   =>  'category deleted ..'
+        ),200); 
     }
 }

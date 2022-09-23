@@ -18,43 +18,31 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-/// lien de video de pagenation https://youtu.be/hR1FOH17BO8
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/users',[UserController::class,"store"]);
 Route::post('/login',[AuthenticationController::class,"login"]);
-Route::apiResources([
-    'products' =>  ProductController::class, 
-    'categories' =>  CategoryController::class 
-   ]);
-   Route::post('/upload',[UploadController::class,"upload"]);   
-   Route::get('/productsPg',[ProductController::class,"indexPagination"]);   
-   
+Route::get('/products',[ProductController::class,"index"]);
+Route::get('/products/{id}',[ProductController::class,"show"]);
+Route::get('/productsPg',[ProductController::class,"indexPagination"]); 
+Route::get('/categories',[CategoryController::class,"index"]);  
+Route::get('/categories/{id}',[CategoryController::class,"show"]);   
 Route::group(["middleware" => "auth:api"], function(){
-     /*Route::apiResources([
-        'products' =>  ProductController::class, 
-        'categories' =>  CategoryController::class 
-       ]);*/
-       Route::get('/users',[UserController::class,"index"]);
-       Route::get('/users/{id}',[UserController::class,"show"]);
-       Route::put('/users/{id}',[UserController::class,"update"]);
-       Route::delete('/users/{id}',[UserController::class,"destroy"]);
-       Route::get('/my',[AuthenticationController::class,"my"]);
+        //categories
+        Route::post('/categories',[CategoryController::class,"stor"]); 
+        Route::put('/categories',[CategoryController::class,"update"]); 
+        Route::delete('/categories',[CategoryController::class,"destroy"]); 
+        //Product
+        Route::post('/products',[ProductController::class,"stor"]);
+        Route::put('/products',[ProductController::class,"update"]);
+        Route::delete('/products',[ProductController::class,"destroy"]);
+        Route::post('/upload',[UploadController::class,"upload"]);
+        //User
+        Route::get('/users',[UserController::class,"index"]);
+        Route::get('/users/{id}',[UserController::class,"show"]);
+        Route::put('/users/{id}',[UserController::class,"update"]);
+        Route::delete('/users/{id}',[UserController::class,"destroy"]);
+        Route::get('/my',[AuthenticationController::class,"my"]);
 });
 
-
-/*Route::group(["middleware" => "auth:api"], function(){
-    //loug out
-    Route::get('/logout',[AuthenficationController::class,"logout"]);
-
-
-    Route::get('/users/{id}',[UserController::class,"show"]);
-    Route::put('/users',[UserController::class,"update"]);
-    Route::delete('/users',[UserController::class,"delete"]);
-    Route::get('/user',[AuthenficationController::class,"user"]);
-
-});
-Route::get('/users',[UserController::class,"index"]);
-Route::post('/users',[UserController::class,"store"]);*/
