@@ -30,13 +30,13 @@ Route::get('/categories',[CategoryController::class,"index"]);
 Route::get('/categories/{id}',[CategoryController::class,"show"]);   
 Route::group(["middleware" => "auth:api"], function(){
         //categories
-        Route::post('/categories',[CategoryController::class,"stor"]); 
-        Route::put('/categories',[CategoryController::class,"update"]); 
-        Route::delete('/categories',[CategoryController::class,"destroy"]); 
+        Route::post('/categories',[CategoryController::class,"store"]); 
+        Route::put('/categories/{id}',[CategoryController::class,"update"]); 
+        Route::delete('/categories/{id}',[CategoryController::class,"destroy"]); 
         //Product
-        Route::post('/products',[ProductController::class,"stor"]);
-        Route::put('/products',[ProductController::class,"update"]);
-        Route::delete('/products',[ProductController::class,"destroy"]);
+        Route::post('/products',[ProductController::class,"store"]);
+        Route::put('/products/{id}',[ProductController::class,"update"]);
+        Route::delete('/products/{id}',[ProductController::class,"destroy"]);
         Route::post('/upload',[UploadController::class,"upload"]);
         //User
         Route::get('/users',[UserController::class,"index"]);
